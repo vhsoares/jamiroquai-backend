@@ -6,7 +6,8 @@ import { UsersProviders } from './users.providers';
 
 @Module({
   imports: [MongoModule],
+  exports: [UsersService],
   controllers: [UserController],
   providers: [UsersService, ...UsersProviders],
 })
-export class UsersModule {}
+export class UsersModule { }

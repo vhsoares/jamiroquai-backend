@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
-  constructor(@Inject('USER_MODEL') private UsersModel: Model<User>) {}
+  constructor(@Inject('USER_MODEL') private UsersModel: Model<User>) { }
 
   async create(content) {
     const user = await new this.UsersModel(content);
@@ -16,5 +16,6 @@ export class UsersService {
     return user;
   }
 
-  async findAll() {}
+
+  async findAll() { }
 }
