@@ -26,9 +26,20 @@ export class AuthService {
         return user
     }
 
-    generateTokens(user: User) {
-        const payload = { sub: user, email: user.email }
+    validateLogin = async (email: string, password: string): Promise<any> => {
+        const user = await this.usersService.getByEmail(email)
 
+        if (user.authSettings.auth_type === `PASSWORD` &&
+            user.authSettings.password === password
+        ) {
+            const { authSettings, ...result } = user
+            return result
+        }
+        return null
+    }
+
+    generateTokens(user: any) {
+        const payload = { sub: user._doc._id, email: user._doc.email, name: user._doc.name }
         return { access_token: this.jwtService.sign(payload) };
     }
 

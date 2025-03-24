@@ -7,8 +7,6 @@ import { LoggerModule } from 'nestjs-pino';
 import { AuthModule } from '../auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import mailConfig from 'src/config/mail.config';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -32,7 +30,6 @@ import { JwtModule } from '@nestjs/jwt';
     }),
     UsersModule,
     AuthModule,
-
     LoggerModule.forRoot(),
   ],
   controllers: [AppController],

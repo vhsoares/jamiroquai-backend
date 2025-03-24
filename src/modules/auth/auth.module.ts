@@ -7,6 +7,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { UsersModule } from '../users/users.module';
+import { LocalStrategy } from './strategies/local.strategy';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 
 @Module({
   imports: [
@@ -16,11 +18,18 @@ import { UsersModule } from '../users/users.module';
     JwtModule.register({
       secret: 'secret',
       signOptions: {
-        expiresIn: '2h'
+        expiresIn: '5m'
       }
     }),],
 
   controllers: [AuthController],
-  providers: [AuthService, MagicLoginStrategy, JwtStrategy],
+  exports: [AuthService],
+  providers: [
+    AuthService,
+    MagicLoginStrategy,
+    LocalStrategy,
+    JwtStrategy,
+    LocalAuthGuard,
+  ],
 })
 export class AuthModule { }

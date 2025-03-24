@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Types } from 'mongoose';
+import { HydratedDocument, SchemaTypes, Types } from 'mongoose';
 import { Notes } from './notes.schema';
 import { Settings } from './settings.schema';
 import { AuthLog } from './auth-log.schema';
@@ -9,6 +9,10 @@ export type UserDocument = HydratedDocument<User>;
 
 @Schema()
 export class User {
+
+  @Prop({ type: SchemaTypes.ObjectId })
+  declare _id: string
+
   @Prop()
   declare name: string;
 

@@ -8,7 +8,6 @@ export class MagicLoginStrategy extends PassportStrategy(Strategy as any) {
     private readonly logger = new Logger(MagicLoginStrategy.name);
 
     constructor(private authService: AuthService) {
-
         super({
             secret: 'nova-secret',
             jwtOptions: {
